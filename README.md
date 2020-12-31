@@ -7,13 +7,13 @@ Fork from [https://github.com/PanJiaChen/vue-split-pane](https://github.com/PanJ
 
 ### How to use?
 ```bash
-npm install vue-resize-splitpane
+npm install vue-resize-splitpanel
 
 #import
-import splitPane from 'vue-resize-splitpane'
+import splitPane from 'vue-resize-splitpanel'
 
 # use as global component
-Vue.component('vue-resize-splitpane', splitPane);
+Vue.component('vue-resize-splitpanel', splitPane);
 ```
 
 ### Example
