@@ -1,13 +1,13 @@
 <template>
   <div :style="{ cursor, userSelect}" class="vue-splitter-container clearfix" @mouseup="onMouseUp" @mousemove="onMouseMove">
 
-    <pane class="splitter-pane splitter-paneL" :split="split" :style="{ [type]: getSize(percent)}">
+    <pane class="splitter-pane splitter-paneL" :split="split" :style="{ [type]: sizeL}">
       <slot name="paneL"></slot>
     </pane>
 
-    <resizer :className="className" :style="{ [resizeType]: getSize(percent)}" :split="split" @mousedown.native="onMouseDown" @click.native="onClick"></resizer>
+    <resizer :className="className" :style="{ [resizeType]: sizeL}" :split="split" @mousedown.native="onMouseDown" @click.native="onClick"></resizer>
 
-    <pane class="splitter-pane splitter-paneR" :split="split" :style="{ [type]: getSize(percent, true)}">
+    <pane class="splitter-pane splitter-paneR" :split="split" :style="{ [type]: sizeR}">
       <slot name="paneR"></slot>
     </pane>
     <div class="vue-splitter-container-mask" v-if="active"></div>
@@ -51,6 +51,21 @@
       },
       cursor() {
         return this.active ? (this.split === 'vertical' ? 'col-resize' : 'row-resize') : ''
+      },
+      sizeL() {
+        let result = this.percent
+        if (percentReg.test(this.percent)) {
+          result = (this.percent + '').replace('%', '') + '%'
+        }
+        return result
+      },
+      sizeR() {
+        let result = this.percent
+        if (percentReg.test(this.percent)) {
+          result = (this.percent + '').replace('%', '') + '%'
+        }
+        result = `calc(100% - ${result})`
+        return result
       }
     },
     watch: {
@@ -119,16 +134,6 @@
           this.hasMoved = true
         }
       },
-      getSize(size, right) {
-        let result = size
-        if (percentReg.test(size)) {
-          result = (size + '').replace('%', '') + '%'
-        }
-        if (right) {
-          result = `calc(100% - ${result})`
-        }
-        return result
-      }
     }
   }
 </script>
