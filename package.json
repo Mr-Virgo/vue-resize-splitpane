@@ -1,7 +1,7 @@
 {
   "name": "vue-resize-splitpanel",
   "description": "vue vue-resize-splitpane component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": "https://github.com/Mr-Virgo/vue-resize-splitpane",
   "author": "373719211@qq.com",
   "main": "dist/vue-split-pane.min.js",
